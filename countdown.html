@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown</title>
+</head>
+<style>
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+div {
+
+  background-color: skyblue;
+  justify-content: center;
+  width: 250px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 120px;
+}
+button{
+    background-color:white;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: large;
+}
+
+</style>
+<body>
+
+<div>
+  <h1 id="timer">00d:00h:00m:00s</h1>
+  <button onclick="countdown()">Start</button>
+  <button onclick="document.getElementById('timer').innerHTML=seconds=0">Stop</button>
+</div>
+
+<script>
+    let timerDisplay = document.getElementById('timer');
+let seconds = 172800;
+
+
+function countdown() {
+  let interval = setInterval(function() {
+    if (seconds < 0) {
+      clearInterval(interval);
+      alert("times up");
+    }
+    else {
+      timerDisplay.textContent = formatTime(seconds);
+      seconds--;
+    }
+  },1000);
+}
+
+
+
+
+function formatTime(time) {
+  let days = Math.floor((time / 3600)/24);
+  let hours = Math.floor(time / 3600)%24;
+  let minutes = Math.floor((time % 3600) / 60);
+  let secs = time % 60;
+  return `${(days)}d:${(hours)}h:${(minutes)}m:${(secs)}s`;
+}
+
+
+
+
+</script>
+</body>
+</html>
